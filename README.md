@@ -7,7 +7,7 @@ This project was built to understand the complete RAG pipeline, from PDF text ex
 ## Live Demo
 
 **Streamlit App:**
-*Add your deployed Streamlit URL here*
+(https://pdf-q-a-rag-blfnzx8ntdknqvrl8urdbd.streamlit.app/)
 
 ## Features
 
