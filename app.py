@@ -99,4 +99,3 @@ Question:
 
         st.subheader("Answer")
         st.write(response.content)
-```
