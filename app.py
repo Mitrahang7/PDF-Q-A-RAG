@@ -1,3 +1,4 @@
+```python
 import os
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
@@ -8,14 +9,16 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 
 load_dotenv()
+
 groq_api_key = os.getenv("GROQ_API_KEY")
+
 llm = ChatGroq(
     model_name="openai/gpt-oss-120b",
     temperature=0.3,
     api_key=groq_api_key
 )
 
-st.title(" PDF RAG Q/A System")
+st.title("PDF RAG Q/A System")
 
 st.write("Upload a PDF and ask questions about it.")
 
@@ -62,22 +65,22 @@ if uploaded_file:
     st.success("PDF processed and ready for questions!")
 
     question = st.text_input(
-    "Ask a question about your PDF:"
-)
-
-if question:
-
-    results = vector_store.similarity_search(
-        question,
-        k=3
+        "Ask a question about your PDF:"
     )
 
-    context = "\n\n".join(
-        result.page_content
-        for result in results
-    )
+    if question:
 
-    prompt = f"""
+        results = vector_store.similarity_search(
+            question,
+            k=3
+        )
+
+        context = "\n\n".join(
+            result.page_content
+            for result in results
+        )
+
+        prompt = f"""
 You are a PDF question-answering assistant.
 
 Answer the question using only the information provided in the context.
@@ -92,7 +95,8 @@ Question:
 {question}
 """
 
-    response = llm.invoke(prompt)
+        response = llm.invoke(prompt)
 
-    st.subheader("Answer")
-    st.write(response.content)
+        st.subheader("Answer")
+        st.write(response.content)
+```
